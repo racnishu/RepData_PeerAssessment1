@@ -83,7 +83,7 @@ activity$date &lt;- as.Date(activity$date, &quot;%Y-%m-%d&quot;);</code></pre>
 <pre><code>## [1] 10766</code></pre>
 <pre class="r"><code>median(StepsTotal$steps)</code></pre>
 <pre><code>## [1] 10765</code></pre>
-<p>The second approach is to make a Dataframe first with the values that I need. I create a data frame with the days and the total of steps by day</p>
+<p>The second approach is to make a Dataframe first with the values that I need. I create a data frame with the days and the total of steps by day.</p>
 <pre class="r"><code>steps &lt;- rep(NA, 61)
 day &lt;- rep(&quot;NA&quot;, 61)
 stepsday &lt;- tapply(activity$steps, activity$date, sum, na.rm = T)
@@ -111,7 +111,7 @@ head(df)</code></pre>
 <div id="what-is-the-average-daily-activity-pattern" class="section level3">
 <h3>What is the average daily activity pattern?</h3>
 <p>Make a time series plot (i.e. type = “l”) of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)</p>
-<p>We get mean of steps and time series plot</p>
+<p>We get mean of steps and time series plot as follows:</p>
 <pre class="r"><code>time_series &lt;- tapply(activity$steps, activity$interval, mean, na.rm = TRUE)</code></pre>
 <p>The plot is:</p>
 <pre class="r"><code>plot(row.names(time_series), time_series, type = &quot;l&quot;, xlab = &quot;5-min interval&quot;, 
@@ -125,12 +125,12 @@ names(max_interval)</code></pre>
 </div>
 <div id="imputing-missing-values" class="section level3">
 <h3>Imputing missing values</h3>
-<p>Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)</p>
+<p>Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs).</p>
 <pre class="r"><code>activity_NA &lt;- sum(is.na(activity))
 activity_NA</code></pre>
 <pre><code>## [1] 2304</code></pre>
 <p>Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval,etc</p>
-<p>Fist Na replaced by mean in 5 min interval</p>
+<p>Fist Na are replaced by mean in 5 min interval</p>
 <pre class="r"><code>StepsAverage &lt;- aggregate(steps ~ interval, data = activity, FUN = mean)
 fillNA &lt;- numeric()
 for (i in 1:nrow(activity)) {
